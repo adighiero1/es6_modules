@@ -11,6 +11,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <script src="main.js" defer></script>
   </head>
   <body>
     <main class="container">
@@ -44,7 +45,7 @@
         <div class="row">
           <div id="wishListContainer" class="col-md-6">
             <h3 id="wishlist-title">Wish List</h3>
-            <ul></ul>
+            <ul id="wishList"></ul>
           </div>
           <div class="col-md-6">
             <div class="card">
@@ -54,7 +55,7 @@
                 <p id="car-model"></p>
                 <p id="car-year"></p>
                 <button
-                  id="removeBTN"
+                  id="removeBtn"
                   class="btn btn-warning removeBtn"
                   disabled
                 >
@@ -66,6 +67,5 @@
         </div>
       </section>
     </main>
-    <script src="main.js"></script>
   </body>
 </html>

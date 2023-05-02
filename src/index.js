@@ -1,29 +1,28 @@
 import Wishlist from "./wishlist";
 
-console.log("Hello World");
 //selecting the dom elements that set the values for car
 let thisWishlist = new Wishlist();
-let form = document.querySelector("#submitform");
-let inputMake = document.querySelector("#makeInput");
-let inputModel = document.querySelector("#modelInput");
-let inputYear = document.querySelector("#yearInput");
+const form = document.querySelector("#submitForm");
+const inputMake = document.querySelector("#makeInput");
+const inputModel = document.querySelector("#modelInput");
+const inputYear = document.querySelector("#yearInput");
 //selecting the display elements
-let displayInputMake = document.querySelector("#car-make");
-let displayInputModel = document.querySelector("#car-model");
-let displayInputYear = document.querySelector("#car-year");
+const displayInputMake = document.querySelector("#car-make");
+const displayInputModel = document.querySelector("#car-model");
+const displayInputYear = document.querySelector("#car-year");
 //selecting the remove button
-let removeBtn = document.querySelector("#removeBTN");
+const removeBtn = document.querySelector(".removeBtn");
 //selecting unordered element by selecting parent then child
-let ul = document.querySelector("#wishListContainer > ul");
+const ul = document.querySelector("ul");
 
 //creating functiosn
 form.addEventListener("submit", addCar);
 removeBtn.addEventListener("click", removeCar);
 function showCarDetails(car) {
   //updates the dom with the correct values for the car from the array object passed
-  displayInputMake = car.make;
-  displayInputModel = car.model;
-  displayInputYear = car.year;
+  displayInputMake.textContent = car.make;
+  displayInputModel.textContent = car.model;
+  displayInputYear.textContent = car.year;
   //enable the remove button
   removeBtn.disabled = false;
   removeBtn.setAttribute("data-carId", car.id);
@@ -33,9 +32,9 @@ function updateDOMList() {
   //will clear ul contents by setting the value to blank
   ul.innerHTML = "";
   //iterating through the list of cars
-  thisWishlist.forEach((car) => {
-    let li = document.createElement("li");
-    li.textContent = car.model;
+  thisWishlist.list.forEach((car) => {
+    const li = document.createElement("li");
+    li.textContent = `${car.make} ${car.model}`;
     // add event listener to showCarDetails per list item click
     li.addEventListener("click", () => showCarDetails(car));
     ul.appendChild(li);
@@ -44,10 +43,7 @@ function updateDOMList() {
 
 function addCar(event) {
   event.preventDefault();
-  let make = inputMake.value;
-  let model = inputModel.value;
-  let year = inputYear.value;
-  thisWishlist.add(make, model, year);
+  thisWishlist.add(inputMake.value, inputModel.value, inputYear.value);
   updateDOMList();
   //reseting form values
   inputMake.value = "";
@@ -63,9 +59,9 @@ function removeCar() {
   //updating the DOM list
   updateDOMList();
   //reseting display values
-  displayInputMake.value = "";
-  displayInputModel.value = "";
-  displayInputYear.value = "";
+  displayInputMake.textContent = "";
+  displayInputModel.textContent = "";
+  displayInputYear.textContent = "";
   //disable remove button
   removeBtn.disabled = true;
 }

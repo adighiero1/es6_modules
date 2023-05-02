@@ -1,18 +1,16 @@
-import Car from "./car";
+import Car from "./car.js";
 
-export default class Wishlist {
-  list = [];
-  nextId = 0;
+export default class WishList {
+  constructor() {
+    this.list = [];
+    this.nextId = 0;
+  }
 
   add(make, model, year) {
-    //use car class to make a new car and add it to the list
-    let car = new Car(this.nextId++, make, model, year); //creating car
+    const car = new Car(++this.nextId, make, model, year);
     this.list.push(car);
   }
-  remove(carId) {
-    //find the car and remove it from the wishlist
-    let carIndex = this.list.findIndex((car) => (car.id = carId)); // finding the car by comparing the carId passed to the car id contained in the list
-    this.list.splice(carIndex, 1); //index is where to start, and 1 is how many to delete
-    // this.list = this.list.filter((car) => car.id != carId);
+  remove(id) {
+    this.list = this.list.filter((car) => id != car.id);
   }
 }
